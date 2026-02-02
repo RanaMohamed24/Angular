@@ -1,0 +1,30 @@
+<div class="p-10 bg-white rounded-lg shadow-md m-5 min-h-[80vh]">
+    <div class="mb-10">
+        <h2 class="text-2xl text-gray-800 font-bold mb-5">Users</h2>
+        <div class="flex gap-2.5 items-center">
+            <input type="text" placeholder="email" [(ngModel)]="searchQuery" (keyup.enter)="onSearch()"
+                class="px-[15px] py-[10px] border border-gray-800 rounded-[4px] w-[300px] text-[16px] outline-none">
+            <button (click)="onSearch()"
+                class="bg-[#006064] text-white py-[10px] px-[25px] rounded-[4px] cursor-pointer text-[16px] transition-colors hover:bg-[#004d40]">
+                Search
+            </button>
+
+            @if (isSearching) {
+            <button (click)="onReset()"
+                class="bg-[#f44336] text-white py-[10px] px-[25px] rounded-[4px] cursor-pointer text-[16px] transition-colors hover:bg-[#d32f2f]">
+                Reset
+            </button>
+            }
+        </div>
+    </div>
+
+    <div class="grid grid-cols-[repeat(auto-fill,minmax(260px,1fr))] gap-[30px] justify-items-center">
+        @for (user of filteredUsers; track user.id) {
+        <app-user-card [user]="user"></app-user-card>
+        } @empty {
+        <div class="col-span-full text-gray-500 text-lg py-10">
+            No users found matching your search.
+        </div>
+        }
+    </div>
+</div>

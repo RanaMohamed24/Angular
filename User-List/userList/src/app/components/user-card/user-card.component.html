@@ -1,0 +1,20 @@
+<div class="bg-white border border-[#cedfe0] rounded-[40px] p-5 flex flex-col items-center gap-2.5 w-[250px] shadow-sm">
+
+    <div class="px-4 py-1 rounded-[4px] text-[12px] font-bold capitalize min-w-[80px] text-center"
+        [class.bg-red-500]="user.role === 'admin'" [class.text-white]="user.role === 'admin' || user.role === 'user'"
+        [class.bg-green-500]="user.role === 'user'" [class.bg-yellow-400]="user.role === 'moderator'"
+        [class.text-gray-800]="user.role === 'moderator'">
+        {{ user.role }}
+    </div>
+
+    <div class="w-full flex flex-col gap-1">
+        <div class="flex flex-col items-center">
+            <span class="text-[10px] text-gray-500">Username</span>
+            <span class="text-[13px] text-gray-800 font-medium">{{ user.username }}</span>
+        </div>
+        <div class="flex flex-col items-center">
+            <span class="text-[10px] text-gray-500">Email</span>
+            <span class="text-[13px] text-gray-800 font-medium">{{ user.email }}</span>
+        </div>
+    </div>
+</div>
