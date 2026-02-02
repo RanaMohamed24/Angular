@@ -1,0 +1,15 @@
+<div class="min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl p-8">
+    <div class="text-center mb-8">
+      <h1 class="text-3xl font-bold text-gray-900 mb-2"> To-Do App</h1>
+     
+    </div>
+
+    <app-todo-input (addTodo)="addTodo($event)"></app-todo-input>
+
+    <div class="mt-8">
+      <app-todo-list [todos]="todos" (deleteTodo)="deleteTodo($event)">
+      </app-todo-list>
+    </div>
+  </div>
+</div>
