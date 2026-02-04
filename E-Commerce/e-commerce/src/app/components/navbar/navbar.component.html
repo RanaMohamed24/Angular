@@ -1,0 +1,33 @@
+<nav class="sticky top-0 z-50 flex items-center justify-between px-8 py-4 bg-white shadow-md font-sans">
+    <div class="navbar-brand">
+        <a routerLink="/"
+            class="text-2xl font-bold text-gray-800 no-underline hover:text-orange-500 transition-colors">E-Store</a>
+    </div>
+    <ul class="flex list-none gap-8 m-0 p-0">
+        <li>
+            <a routerLink="/products" routerLinkActive="text-orange-500 border-b-2 border-orange-500"
+                [routerLinkActiveOptions]="{exact: true}"
+                class="no-underline text-gray-600 font-medium hover:text-orange-500 transition-colors py-1">
+                Products
+            </a>
+        </li>
+        <li>
+            <a routerLink="/cart" routerLinkActive="text-orange-500 border-b-2 border-orange-500"
+                class="no-underline text-gray-600 font-medium hover:text-orange-500 transition-colors py-1">
+                Cart
+            </a>
+        </li>
+        <li>
+            <a routerLink="/register" routerLinkActive="text-orange-500 border-b-2 border-orange-500"
+                class="no-underline text-gray-600 font-medium hover:text-orange-500 transition-colors py-1">
+                Register
+            </a>
+        </li>
+        <li>
+            <a routerLink="/login" routerLinkActive="text-orange-500 border-b-2 border-orange-500"
+                class="no-underline text-gray-600 font-medium hover:text-orange-500 transition-colors py-1">
+                Login
+            </a>
+        </li>
+    </ul>
+</nav>

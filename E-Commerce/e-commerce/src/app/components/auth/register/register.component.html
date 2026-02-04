@@ -1,0 +1,80 @@
+<div class="flex justify-center items-center py-12 bg-gray-50/50 font-sans">
+    <div class="bg-white p-10 rounded-3xl shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] w-full max-w-lg">
+        <div class="text-center mb-10">
+            <h2 class="text-3xl font-black text-gray-900 mb-2">Create Account</h2>
+            <p class="text-gray-400 font-medium">Join us today! Please fill in the details.</p>
+        </div>
+
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="space-y-5">
+            <div class="space-y-1">
+                <label for="name" class="block text-sm font-bold text-gray-700 ml-1">Full Name</label>
+                <input type="text" id="name" formControlName="name"
+                    class="w-full px-5 py-3.5 border-2 border-gray-100 rounded-2xl transition-all focus:outline-none focus:border-green-500 focus:ring-4 focus:ring-green-500/10"
+                    placeholder="John Doe">
+                <div class="min-h-[1.1rem] text-red-500 text-xs font-bold ml-1"
+                    *ngIf="f['name'].invalid && (f['name'].touched || submitted)">
+                    <span *ngIf="f['name'].errors?.['required']">Name is required.</span>
+                </div>
+            </div>
+
+            <div class="space-y-1">
+                <label for="email" class="block text-sm font-bold text-gray-700 ml-1">Email Address</label>
+                <input type="email" id="email" formControlName="email"
+                    class="w-full px-5 py-3.5 border-2 border-gray-100 rounded-2xl transition-all focus:outline-none focus:border-green-500 focus:ring-4 focus:ring-green-500/10"
+                    placeholder="john@example.com">
+                <div class="min-h-[1.1rem] text-red-500 text-xs font-bold ml-1"
+                    *ngIf="f['email'].invalid && (f['email'].touched || submitted)">
+                    <span *ngIf="f['email'].errors?.['required']">Email is required.</span>
+                    <span *ngIf="f['email'].errors?.['email']">Enter a valid email address.</span>
+                </div>
+            </div>
+
+            <div class="space-y-1">
+                <label for="username" class="block text-sm font-bold text-gray-700 ml-1">Username</label>
+                <input type="text" id="username" formControlName="username"
+                    class="w-full px-5 py-3.5 border-2 border-gray-100 rounded-2xl transition-all focus:outline-none focus:border-green-500 focus:ring-4 focus:ring-green-500/10"
+                    placeholder="johndoe123">
+                <div class="min-h-[1.1rem] text-red-500 text-xs font-bold ml-1"
+                    *ngIf="f['username'].invalid && (f['username'].touched || submitted)">
+                    <span *ngIf="f['username'].errors?.['required']">Username is required.</span>
+                    <span *ngIf="f['username'].errors?.['pattern']">Username cannot contain spaces.</span>
+                </div>
+            </div>
+
+            <div class="space-y-1">
+                <label for="password" class="block text-sm font-bold text-gray-700 ml-1">Password</label>
+                <input type="password" id="password" formControlName="password"
+                    class="w-full px-5 py-3.5 border-2 border-gray-100 rounded-2xl transition-all focus:outline-none focus:border-green-500 focus:ring-4 focus:ring-green-500/10"
+                    placeholder="••••••••">
+                <div class="min-h-[1.1rem] text-red-500 text-xs font-bold ml-1"
+                    *ngIf="f['password'].invalid && (f['password'].touched || submitted)">
+                    <span *ngIf="f['password'].errors?.['required']">Password is required.</span>
+                    <span *ngIf="f['password'].errors?.['minlength']">Min 8 characters.</span>
+                    <span *ngIf="f['password'].errors?.['pattern']">Need Upper, Lower, Digit & @%$#</span>
+                </div>
+            </div>
+
+            <div class="space-y-1">
+                <label for="confirmPassword" class="block text-sm font-bold text-gray-700 ml-1">Confirm Password</label>
+                <input type="password" id="confirmPassword" formControlName="confirmPassword"
+                    class="w-full px-5 py-3.5 border-2 border-gray-100 rounded-2xl transition-all focus:outline-none focus:border-green-500 focus:ring-4 focus:ring-green-500/10"
+                    placeholder="••••••••">
+                <div class="min-h-[1.1rem] text-red-500 text-xs font-bold ml-1"
+                    *ngIf="f['confirmPassword'].invalid && (f['confirmPassword'].touched || submitted)">
+                    <span *ngIf="f['confirmPassword'].errors?.['required']">Please confirm password.</span>
+                    <span *ngIf="f['confirmPassword'].errors?.['mustMatch']">Passwords must match.</span>
+                </div>
+            </div>
+
+            <button type="submit"
+                class="w-full py-4 bg-green-500 text-white rounded-2xl text-lg font-black hover:bg-green-600 shadow-lg shadow-green-500/20 transition-all transform active:scale-[0.98] mt-6">
+                Register Now
+            </button>
+        </form>
+
+        <p class="text-center mt-8 text-gray-500 font-medium">
+            Already have an account? <a routerLink="/login" class="text-green-500 font-bold hover:underline">Login
+                here</a>
+        </p>
+    </div>
+</div>

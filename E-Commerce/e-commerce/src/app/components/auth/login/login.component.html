@@ -1,0 +1,47 @@
+<div class="flex justify-center items-center min-h-[70vh] bg-gray-50/50 py-12 font-sans">
+    <div
+        class="bg-white p-10 rounded-3xl shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] w-full max-w-md transform transition-all duration-500 animate-[slideUp_0.6s_ease-out]">
+        <div class="text-center mb-10">
+            <h2 class="text-3xl font-black text-gray-900 mb-2">Login</h2>
+            <p class="text-gray-400 font-medium">Welcome back! Please enter your details.</p>
+        </div>
+
+        <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)" class="space-y-6">
+            <div class="space-y-2">
+                <label for="email" class="block text-sm font-bold text-gray-700 ml-1">Email Address</label>
+                <input type="email" id="email" name="email" ngModel required
+                    pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" #email="ngModel"
+                    class="w-full px-5 py-4 border-2 border-gray-100 rounded-2xl text-base transition-all duration-300 focus:outline-none focus:border-orange-500 focus:ring-4 focus:ring-orange-500/10 placeholder:text-gray-300"
+                    [ngClass]="{'border-red-500 bg-red-50/30': email.invalid && (email.dirty || email.touched || loginForm.submitted)}"
+                    placeholder="alex@example.com">
+                <div class="min-h-[1.2rem] h-auto text-red-500 text-xs font-bold ml-1"
+                    *ngIf="email.invalid && (email.dirty || email.touched || loginForm.submitted)">
+                    <span *ngIf="email.errors?.['required']">Email is required.</span>
+                    <span *ngIf="email.errors?.['pattern']">Please enter a valid email format.</span>
+                </div>
+            </div>
+
+            <div class="space-y-2">
+                <label for="password" class="block text-sm font-bold text-gray-700 ml-1">Password</label>
+                <input type="password" id="password" name="password" ngModel required #password="ngModel"
+                    class="w-full px-5 py-4 border-2 border-gray-100 rounded-2xl text-base transition-all duration-300 focus:outline-none focus:border-orange-500 focus:ring-4 focus:ring-orange-500/10 placeholder:text-gray-300"
+                    [ngClass]="{'border-red-500 bg-red-50/30': password.invalid && (password.dirty || password.touched || loginForm.submitted)}"
+                    placeholder="••••••••">
+                <div class="min-h-[1.2rem] h-auto text-red-500 text-xs font-bold ml-1"
+                    *ngIf="password.invalid && (password.dirty || password.touched || loginForm.submitted)">
+                    <span *ngIf="password.errors?.['required']">Password is required.</span>
+                </div>
+            </div>
+
+            <button type="submit"
+                class="w-full py-4 bg-orange-500 text-white rounded-2xl text-lg font-black hover:bg-orange-600 hover:shadow-[0_8px_25px_-5px_rgba(249,115,22,0.4)] transition-all transform active:scale-[0.98] mt-4">
+                Login
+            </button>
+        </form>
+
+        <p class="text-center mt-8 text-gray-500 font-medium">
+            Don't have an account? <a routerLink="/register" class="text-orange-500 font-bold hover:underline">Create
+                one</a>
+        </p>
+    </div>
+</div>
