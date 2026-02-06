@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ProductsService } from '../../services/products.service';
 import { Product } from '../../models/product';
+import { CartService } from '../../services/cart.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-product-details',
@@ -13,14 +15,33 @@ import { Product } from '../../models/product';
 })
 export class ProductDetailsComponent implements OnInit {
   product?: Product;
-
-  constructor(
-    private route: ActivatedRoute,
-    private productsService: ProductsService
-  ) { }
+  private route = inject(ActivatedRoute);
+  private productsService = inject(ProductsService);
+  private cartService = inject(CartService);
+  private toastr = inject(ToastrService);
+  isLoading = true;
+  error: string | null = null;
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.product = this.productsService.getProductById(id);
+
+    this.productsService.getProductById(id).subscribe({
+      next: (data) => {
+        this.product = data;
+        this.isLoading = false;
+      },
+      error: (err) => {
+        console.error('Error fetching product:', err);
+        this.error = 'Product not found.';
+        this.isLoading = false;
+      }
+    });
+  }
+
+  addToCart(): void {
+    if (this.product) {
+      this.cartService.addToCart(this.product);
+      this.toastr.success(`${this.product.title} added to cart!`, 'Added ✓');
+    }
   }
 }

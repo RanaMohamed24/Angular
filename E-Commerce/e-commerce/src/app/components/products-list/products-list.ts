@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductCardComponent } from '../product-card/product-card';
 import { ProductsService } from '../../services/products.service';
@@ -12,11 +12,26 @@ import { Product } from '../../models/product';
   styleUrl: './products-list.component.css'
 })
 export class ProductsListComponent implements OnInit {
-  products: Product[] = [];
+   products: Product[] = [];
+   isLoading = true;   
+  error: string | null = null;  
 
-  constructor(private productsService: ProductsService) { }
+
+
+private productsService = inject(ProductsService);
+ 
 
   ngOnInit(): void {
-    this.products = this.productsService.getProducts();
+      this.productsService.getProducts().subscribe({
+        next: (data) => {
+        this.products = data;
+        this.isLoading = false;
+      },
+        error: (error) => {
+          console.error('Error fetching products:', error);
+          this.error = 'Failed to load products';
+          this.isLoading = false;
+        }
+      });
   }
 }

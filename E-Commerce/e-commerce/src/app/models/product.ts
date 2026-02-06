@@ -5,10 +5,16 @@ export interface Product {
     description: string;
     category: string;
     image: string;
-    rating: {
-        rate: number;
-        count: number;
-    };
-    brand?: string;
+    thumbnail: string;   
+    rating: number;
+    brand: string;
     stock: number;
+    discountPercentage?: number; 
+}
+
+export interface ProductsResponse {
+    products: Product[];
+    total: number;
+    skip: number;
+    limit: number;
 }
